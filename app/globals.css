@@ -1,26 +1,266 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ── AKKA Design System ─────────────────────────────────── */
+@theme {
+  /* Backgrounds */
+  --color-akka-bg:      #080d1a;
+  --color-akka-surface: #0d1428;
+  --color-akka-deep:    #050810;
+
+  /* Accents */
+  --color-akka-blue:    #1e6fff;
+  --color-akka-cyan:    #00c8e0;
+  --color-akka-green:   #25d366;
+
+  /* Text */
+  --color-akka-text:    #ffffff;
+  --color-akka-soft:    #c8d8ee;
+  --color-akka-muted:   #8ba3be;
+  --color-akka-faint:   #4a6080;
+
+  /* Borders */
+  --color-akka-line:    #1a3a6e;
+  --color-akka-line-soft: #0f2147;
+
+  /* Fonts */
+  --font-heading: "Space Grotesk", sans-serif;
+  --font-body:    "Inter", sans-serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ── Base Reset ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-akka-bg);
+  color: var(--color-akka-text);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  /* Diagonal texture + radial glow ambiance */
+  background-image:
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 28px,
+      rgba(30, 111, 255, 0.025) 28px,
+      rgba(30, 111, 255, 0.025) 29px
+    ),
+    radial-gradient(ellipse 900px 600px at 15% -5%, rgba(30, 111, 255, 0.11), transparent 65%),
+    radial-gradient(ellipse 600px 400px at 88% 105%, rgba(0, 200, 224, 0.06), transparent 60%);
+  background-attachment: fixed;
+}
+
+::selection { background: rgba(30, 111, 255, 0.30); color: #fff; }
+
+:focus-visible {
+  outline: 2px solid var(--color-akka-blue);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+/* ── Typography helpers ─────────────────────────────────── */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  color: var(--color-akka-text);
+}
+
+/* ── Section shell ──────────────────────────────────────── */
+.section {
+  padding: 88px 0;
+  border-top: 1px solid var(--color-akka-line-soft);
+}
+
+/* ── Max-width wrapper ──────────────────────────────────── */
+.wrap {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ── Section header ─────────────────────────────────────── */
+.sec-head {
+  text-align: center;
+  margin-bottom: 52px;
+}
+.sec-head h2 {
+  font-size: clamp(28px, 4.5vw, 44px);
+  margin: 12px 0 0;
+}
+.sec-head .sub {
+  color: var(--color-akka-muted);
+  font-size: 17px;
+  margin-top: 12px;
+  max-width: 540px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.65;
+}
+
+/* ── Eyebrow label ──────────────────────────────────────── */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-akka-cyan);
+}
+.eyebrow::before {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 1px;
+  background: var(--color-akka-cyan);
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 26px;
+  border-radius: 10px;
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  border: 1.5px solid transparent;
+  transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+  white-space: nowrap;
+}
+.btn:active { transform: scale(0.97); }
+
+.btn-primary {
+  background: var(--color-akka-blue);
+  color: #fff;
+  border-color: var(--color-akka-blue);
+  box-shadow: 0 4px 20px rgba(30, 111, 255, 0.28);
+}
+.btn-primary:hover {
+  background: #3a80ff;
+  box-shadow: 0 6px 28px rgba(30, 111, 255, 0.42);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: rgba(30, 111, 255, 0.08);
+  color: var(--color-akka-soft);
+  border-color: var(--color-akka-line);
+}
+.btn-ghost:hover {
+  border-color: var(--color-akka-blue);
+  color: #fff;
+  background: rgba(30, 111, 255, 0.14);
+}
+
+.btn-wa {
+  background: #25d366;
+  color: #000;
+  border-color: #25d366;
+  font-weight: 700;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.30);
+}
+.btn-wa:hover {
+  background: #20bd5a;
+  box-shadow: 0 6px 28px rgba(37, 211, 102, 0.45);
+  transform: translateY(-2px);
+}
+
+/* ── Status badge / animated dot ───────────────────────── */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 100px;
+  border: 1px solid rgba(0, 200, 224, 0.25);
+  background: rgba(0, 200, 224, 0.08);
+  font-size: 13px;
+  color: var(--color-akka-cyan);
+  font-weight: 500;
+}
+.badge-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-akka-cyan);
+  position: relative;
+  flex-shrink: 0;
+}
+.badge-dot::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(0, 200, 224, 0.45);
+  animation: pulse-ring 2s ease-out infinite;
+}
+
+/* ── Pill tag ───────────────────────────────────────────── */
+.pill {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--color-akka-cyan);
+  border: 1px solid rgba(0, 200, 224, 0.22);
+  background: rgba(0, 200, 224, 0.07);
+  padding: 4px 10px;
+  border-radius: 100px;
+}
+
+/* ── Scroll animations ──────────────────────────────────── */
+[data-animate] {
+  opacity: 0;
+  translate: 0 22px;
+  transition: opacity 0.55s ease, translate 0.55s ease;
+  transition-delay: var(--delay, 0s);
+}
+[data-animate].is-visible {
+  opacity: 1;
+  translate: 0 0;
+}
+@media (prefers-reduced-motion: reduce) {
+  [data-animate] { opacity: 1; translate: none; transition: none; }
+}
+
+/* ── Animations ─────────────────────────────────────────── */
+@keyframes pulse-ring {
+  0%   { transform: scale(1); opacity: 0.7; }
+  70%  { transform: scale(1.9); opacity: 0; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+
+@keyframes wa-pulse {
+  0%   { transform: scale(1); opacity: 0.6; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+/* ── Calendly widget override ───────────────────────────── */
+.calendly-inline-widget {
+  min-width: 320px;
+  height: 700px;
+  border: 1px solid var(--color-akka-line);
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+/* ── Mobile responsive helpers ──────────────────────────── */
+@media (max-width: 680px) {
+  .section { padding: 64px 0; }
+  .wrap { padding: 0 16px; }
+  .sec-head { margin-bottom: 36px; }
 }
