@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 
 // Replace this URL with your actual Calendly scheduling link once you set up your account at calendly.com
-const CALENDLY_URL = "https://calendly.com/info-akka/consulta-gratis";
+const CALENDLY_URL = "https://calendly.com/info-akkaes/main-calendar";
 
 export default function Booking() {
   useEffect(() => {
