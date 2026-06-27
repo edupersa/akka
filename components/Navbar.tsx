@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -36,33 +37,14 @@ export default function Navbar() {
           style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none" }}
           aria-label="AKKA Tech Solutions — inicio"
         >
-          <span
-            style={{
-              background: "#1e6fff",
-              color: "#fff",
-              fontFamily: "var(--font-heading)",
-              fontWeight: 700,
-              fontSize: 15,
-              padding: "4px 9px",
-              borderRadius: 7,
-              letterSpacing: "-0.01em",
-              lineHeight: 1,
-            }}
-          >
-            AK
-          </span>
-          <span
-            style={{
-              fontFamily: "var(--font-heading)",
-              fontWeight: 700,
-              fontSize: 18,
-              color: "#fff",
-              letterSpacing: "-0.02em",
-            }}
-          >
-            AKKA{" "}
-            <span style={{ color: "#00c8e0" }}>Tech</span>
-          </span>
+          <Image
+            src="/akka_logo_01.png"
+            alt="AKKA Tech Solutions"
+            width={120}
+            height={40}
+            style={{ objectFit: "contain" }}
+            priority
+          />
         </a>
 
         {/* Desktop nav */}
