@@ -91,5 +91,5 @@ reserva de llamada por Calendly.
 ### Git
 *(origen: cambio legal — páginas legales y cookies, 2026-07-04)*
 
-- [ ] Commit y merge de la rama `legal-pages-cookies-consent` a `main`
-      cuando se confirme el contenido.
+- [x] Commit y merge de la rama `legal-pages-cookies-consent` a `main`
+      (2026-07-04).
