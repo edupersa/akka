@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
+import { CookieConsentProvider } from "@/lib/cookie-consent";
+import CookieBanner from "@/components/CookieBanner";
+import Analytics from "@/components/Analytics";
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
@@ -118,7 +121,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-full flex flex-col antialiased">{children}</body>
+      <body className="min-h-full flex flex-col antialiased">
+        <CookieConsentProvider>
+          {children}
+          <CookieBanner />
+          <Analytics />
+        </CookieConsentProvider>
+      </body>
     </html>
   );
 }

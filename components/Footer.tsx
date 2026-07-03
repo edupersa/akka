@@ -1,3 +1,7 @@
+"use client";
+
+import { useCookieConsent } from "@/lib/cookie-consent";
+
 const links = [
   { href: "#servicios", label: "Servicios" },
   { href: "#por-que", label: "Por qué AKKA" },
@@ -6,7 +10,15 @@ const links = [
   { href: "#contacto", label: "Contacto" },
 ];
 
+const legalLinks = [
+  { href: "/aviso-legal", label: "Aviso legal" },
+  { href: "/politica-privacidad", label: "Privacidad" },
+  { href: "/politica-cookies", label: "Cookies" },
+];
+
 export default function Footer() {
+  const { openPreferences } = useCookieConsent();
+
   const year = new Date().getFullYear();
 
   return (
@@ -122,6 +134,46 @@ export default function Footer() {
           <p style={{ fontSize: 12, color: "#4a6080", margin: 0 }}>
             © {year} AKKA Tech Solutions · info@akka.es
           </p>
+
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: 16,
+              flexWrap: "wrap",
+            }}
+          >
+            {legalLinks.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                style={{ fontSize: 12, color: "#4a6080", textDecoration: "none" }}
+                onMouseEnter={(e) =>
+                  ((e.target as HTMLElement).style.color = "#c8d8ee")
+                }
+                onMouseLeave={(e) =>
+                  ((e.target as HTMLElement).style.color = "#4a6080")
+                }
+              >
+                {l.label}
+              </a>
+            ))}
+            <button
+              onClick={openPreferences}
+              style={{
+                fontSize: 12,
+                color: "#4a6080",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                padding: 0,
+                textDecoration: "underline",
+              }}
+            >
+              Configurar cookies
+            </button>
+          </div>
+
           <p style={{ fontSize: 12, color: "#4a6080", margin: 0 }}>
             Hecho con IA · Desarrollado con ❤️
           </p>

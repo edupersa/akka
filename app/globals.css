@@ -258,6 +258,22 @@ h1, h2, h3, h4 {
   overflow: hidden;
 }
 
+/* ── Legal pages ─────────────────────────────────────────── */
+.legal-content { max-width: 780px; margin: 0 auto; }
+.legal-content h1 { font-size: clamp(28px, 4vw, 40px); margin-bottom: 8px; }
+.legal-content .legal-updated { color: var(--color-akka-faint); font-size: 13px; margin-bottom: 40px; }
+.legal-content h2 { font-size: 21px; margin-top: 40px; margin-bottom: 14px; color: var(--color-akka-soft); font-family: var(--font-heading); }
+.legal-content h3 { font-size: 16px; margin-top: 24px; margin-bottom: 8px; color: var(--color-akka-soft); font-family: var(--font-heading); }
+.legal-content p { color: var(--color-akka-muted); font-size: 15px; line-height: 1.75; margin-bottom: 14px; }
+.legal-content ul, .legal-content ol { color: var(--color-akka-muted); font-size: 15px; line-height: 1.75; margin: 0 0 14px 22px; }
+.legal-content li { margin-bottom: 6px; }
+.legal-content a { color: var(--color-akka-cyan); }
+.legal-content strong { color: var(--color-akka-soft); }
+.legal-content table { width: 100%; border-collapse: collapse; margin: 8px 0 20px; font-size: 13.5px; }
+.legal-content th, .legal-content td { border: 1px solid var(--color-akka-line-soft); padding: 10px 12px; text-align: left; color: var(--color-akka-muted); vertical-align: top; }
+.legal-content th { color: var(--color-akka-soft); background: rgba(30, 111, 255, 0.06); }
+.legal-content .table-wrap { overflow-x: auto; }
+
 /* ── Mobile responsive helpers ──────────────────────────── */
 @media (max-width: 680px) {
   .section { padding: 64px 0; }
