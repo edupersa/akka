@@ -39,6 +39,7 @@ const services = [
     tag: "IA · Voz · 24/7",
     delay: "0.12s",
     featured: true,
+    href: "/agente-de-voz",
   },
 ];
 
@@ -169,6 +170,20 @@ function ServiceCard({ service }: { service: (typeof services)[0] }) {
       <span className="pill" style={{ alignSelf: "flex-start", marginTop: 4 }}>
         {service.tag}
       </span>
+      {service.href && (
+        <a
+          href={service.href}
+          style={{
+            fontSize: 13,
+            fontWeight: 600,
+            color: "#1e6fff",
+            textDecoration: "none",
+            marginTop: 2,
+          }}
+        >
+          Saber más →
+        </a>
+      )}
     </article>
   );
 }
