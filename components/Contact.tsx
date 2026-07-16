@@ -1,5 +1,9 @@
-const WA_LINK =
-  "https://wa.me/34614820732?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20AKKA";
+import { CALL_NUMBER, buildCallLink, buildWhatsAppLink } from "@/lib/contact-config";
+
+const WA_LINK = buildWhatsAppLink(
+  "Hola, quiero saber más sobre los servicios de AKKA"
+);
+const CALL_LINK = buildCallLink(CALL_NUMBER);
 
 export default function Contact() {
   return (
@@ -80,6 +84,13 @@ export default function Contact() {
                 <path d="M12.004 2C6.477 2 2 6.477 2 12.004c0 1.77.463 3.526 1.338 5.063L2 22l5.07-1.323A9.969 9.969 0 0 0 12.004 22C17.531 22 22 17.531 22 12.004 22 6.477 17.531 2 12.004 2zm0 18.18a8.154 8.154 0 0 1-4.163-1.143l-.299-.177-3.012.786.807-2.942-.194-.31A8.179 8.179 0 1 1 12.004 20.18z"/>
               </svg>
               Hablar por WhatsApp
+            </a>
+
+            <a href={CALL_LINK} className="btn btn-primary">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              Llamar ahora
             </a>
 
             <a

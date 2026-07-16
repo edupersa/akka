@@ -1,7 +1,9 @@
 import Link from "next/link";
+import { buildWhatsAppLink } from "@/lib/contact-config";
 
-const WA_LINK =
-  "https://wa.me/34614820732?text=Hola%2C%20quiero%20saber%20m%C3%A1s%20sobre%20los%20servicios%20de%20AKKA";
+const WA_LINK = buildWhatsAppLink(
+  "Hola, quiero saber más sobre los servicios de AKKA"
+);
 
 const stats = [
   { num: "5+", label: "Servicios" },
