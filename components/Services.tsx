@@ -173,15 +173,13 @@ function ServiceCard({ service }: { service: (typeof services)[0] }) {
       {service.href && (
         <a
           href={service.href}
-          style={{
-            fontSize: 13,
-            fontWeight: 600,
-            color: "#1e6fff",
-            textDecoration: "none",
-            marginTop: 2,
-          }}
+          className="btn btn-primary"
+          style={{ padding: "8px 16px", fontSize: 13, marginTop: 4, alignSelf: "flex-start" }}
         >
-          Saber más →
+          Saber más
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <path d="M5 12h14M13 6l6 6-6 6" />
+          </svg>
         </a>
       )}
     </article>
