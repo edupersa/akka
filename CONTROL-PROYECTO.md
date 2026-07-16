@@ -35,6 +35,9 @@ reserva de llamada por Calendly.
 | 2026-07-04 | Legal | Se añaden Aviso Legal, Política de Privacidad y Política de Cookies conformes a LSSI-CE/RGPD-LOPDGDD, identificando al titular como persona física (NIE) en proceso de alta como autónomo. | Cambio legal — páginas legales y cookies |
 | 2026-07-04 | Cookies/Consentimiento | Se implementa banner de consentimiento funcional (aceptar todo / rechazar no esenciales / configurar por categoría). El widget de Calendly deja de cargarse automáticamente y ahora requiere aceptar la categoría "funcionales". | Cambio legal — páginas legales y cookies |
 | 2026-07-04 | Analítica/Marketing | Se decide **no activar todavía** Google Analytics ni Meta Pixel (no hay IDs de seguimiento). Se deja la infraestructura de consentimiento y carga de scripts lista en [components/Analytics.tsx](components/Analytics.tsx), inactiva hasta configurar `.env.local`. | Cambio legal — páginas legales y cookies |
+| 2026-07-16 | Proceso/Git | Se establece como norma **no commitear/pushear directo a `main`**: todo cambio de código pasa por una rama nueva y (cuando aplique) un PR. | Petición explícita del usuario |
+| 2026-07-16 | Contacto | Se añade botón flotante de llamada ("Llamar a IA") junto al de WhatsApp ("Chatear con IA"), y botón "Llamar ahora" en la sección de contacto. Números centralizados en [lib/contact-config.ts](lib/contact-config.ts) para facilitar su actualización. | Petición del usuario — botón flotante de llamada |
+| 2026-07-16 | Producto | Se crean landing pages por sector/función (`/clinica-estetica`, `/agente-de-voz`) con copy propio pero el mismo CTA final que el resto del sitio, pensadas para SEO por sector y para campañas de ads. Patrón pensado para repetirse con más sectores/campañas. | Rama `feature/landing-pages-sector` |
 
 ## 3. Estado actual (aprobado)
 
@@ -93,3 +96,27 @@ reserva de llamada por Calendly.
 
 - [x] Commit y merge de la rama `legal-pages-cookies-consent` a `main`
       (2026-07-04).
+
+### Botones de contacto (flotante y CTA)
+*(origen: petición del usuario — botón flotante de llamada, 2026-07-16)*
+
+- [ ] Sustituir el número placeholder de llamadas (`CALL_NUMBER` en
+      [lib/contact-config.ts](lib/contact-config.ts), hoy igual al de
+      WhatsApp) por el número real del agente de voz IA.
+- [ ] Hacer clickeable también el **texto** de la etiqueta del botón
+      flotante (hoy solo el ícono circular lleva a la acción), para que
+      "Llamar a IA" / "Chatear con IA" funcionen igual que el botón.
+
+### Landing pages por sector/función
+*(origen: rama `feature/landing-pages-sector`, 2026-07-16)*
+
+- [ ] Fusionar la rama `feature/landing-pages-sector` a `main` (PR abierto:
+      revisar preview de Vercel antes de aprobar).
+- [ ] Agregar una sección de "casos de uso por sector" en el home que
+      enlace visualmente a estas landing pages (`/clinica-estetica`,
+      `/agente-de-voz`), no solo el link discreto del footer.
+- [ ] Resaltar más el botón "Saber más" de la tarjeta de servicios que
+      enlaza a `/agente-de-voz` — ya se actualizó a un botón sólido
+      (`btn btn-primary`), confirmar que se ve suficientemente prominente.
+- [ ] A futuro: nuevas landing pages por sector/campaña siguiendo el mismo
+      patrón (`components/landing/`, nav minimalista, mismo CTA final).

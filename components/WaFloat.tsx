@@ -15,6 +15,7 @@ function FloatButton({
   shadow,
   hoverShadow,
   pulseClass,
+  labelDelay,
   children,
 }: {
   href: string;
@@ -26,11 +27,14 @@ function FloatButton({
   shadow: string;
   hoverShadow: string;
   pulseClass: string;
+  labelDelay: string;
   children: React.ReactNode;
 }) {
   return (
     <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-      <span className="float-label">{label}</span>
+      <span className="float-label" style={{ animationDelay: labelDelay }}>
+        {label}
+      </span>
 
       <div style={{ position: "relative", width: 56, height: 56 }}>
         <div className={pulseClass} aria-hidden="true" />
@@ -97,6 +101,7 @@ export default function WaFloat() {
           shadow="0 4px 20px rgba(30, 111, 255, 0.40)"
           hoverShadow="0 8px 32px rgba(30, 111, 255, 0.55)"
           pulseClass="call-float-pulse"
+          labelDelay="0s"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -113,6 +118,7 @@ export default function WaFloat() {
           shadow="0 4px 20px rgba(37, 211, 102, 0.40)"
           hoverShadow="0 8px 32px rgba(37, 211, 102, 0.55)"
           pulseClass="wa-float-pulse"
+          labelDelay="4s"
         >
           <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
@@ -144,14 +150,33 @@ export default function WaFloat() {
           font-size: 13px;
           font-weight: 600;
           white-space: nowrap;
+          overflow: hidden;
           padding: 7px 12px;
           border-radius: 8px;
           box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
           border: 1px solid rgba(255, 255, 255, 0.08);
         }
 
+        /* On small screens the label doesn't stay on permanently (no room for it) —
+           it peeks into view every few seconds instead, then collapses to zero width. */
         @media (max-width: 420px) {
-          .float-label { display: none; }
+          .float-label {
+            max-width: 0;
+            padding-left: 0;
+            padding-right: 0;
+            border-width: 0;
+            box-shadow: none;
+            opacity: 0;
+            animation: float-label-peek 7s ease-in-out infinite;
+          }
+        }
+        @keyframes float-label-peek {
+          0%, 60%   { opacity: 0; max-width: 0;    padding-left: 0;  padding-right: 0;  border-width: 0; box-shadow: none; }
+          70%, 88%  { opacity: 1; max-width: 220px; padding-left: 12px; padding-right: 12px; border-width: 1px; box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35); }
+          97%, 100% { opacity: 0; max-width: 0;    padding-left: 0;  padding-right: 0;  border-width: 0; box-shadow: none; }
+        }
+        @media (max-width: 420px) and (prefers-reduced-motion: reduce) {
+          .float-label { animation: none; display: none; }
         }
       `}</style>
     </>
