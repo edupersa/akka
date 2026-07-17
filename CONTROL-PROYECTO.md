@@ -38,6 +38,7 @@ reserva de llamada por Calendly.
 | 2026-07-16 | Proceso/Git | Se establece como norma **no commitear/pushear directo a `main`**: todo cambio de código pasa por una rama nueva y (cuando aplique) un PR. | Petición explícita del usuario |
 | 2026-07-16 | Contacto | Se añade botón flotante de llamada ("Llamar a IA") junto al de WhatsApp ("Chatear con IA"), y botón "Llamar ahora" en la sección de contacto. Números centralizados en [lib/contact-config.ts](lib/contact-config.ts) para facilitar su actualización. | Petición del usuario — botón flotante de llamada |
 | 2026-07-16 | Producto | Se crean landing pages por sector/función (`/clinica-estetica`, `/agente-de-voz`) con copy propio pero el mismo CTA final que el resto del sitio, pensadas para SEO por sector y para campañas de ads. Patrón pensado para repetirse con más sectores/campañas. | Rama `feature/landing-pages-sector` |
+| 2026-07-16 | Contacto | Las etiquetas del botón flotante pasan a usar el color de marca de cada acción (azul/blanco para llamar, verde/negro para WhatsApp) en vez de un fondo oscuro que se confundía con la web, y ahora son clickeables (mismo destino que el botón). | Rama `feature/float-label-contrast-and-links` |
 
 ## 3. Estado actual (aprobado)
 
@@ -103,15 +104,16 @@ reserva de llamada por Calendly.
 - [ ] Sustituir el número placeholder de llamadas (`CALL_NUMBER` en
       [lib/contact-config.ts](lib/contact-config.ts), hoy igual al de
       WhatsApp) por el número real del agente de voz IA.
-- [ ] Hacer clickeable también el **texto** de la etiqueta del botón
-      flotante (hoy solo el ícono circular lleva a la acción), para que
-      "Llamar a IA" / "Chatear con IA" funcionen igual que el botón.
+- [x] Hacer clickeable también el **texto** de la etiqueta del botón
+      flotante (2026-07-16): ahora es un link real al mismo destino que el
+      botón, y usa el color de marca de cada acción (azul/blanco para
+      llamar, verde/negro para WhatsApp) en vez de fundirse con el fondo.
 
 ### Landing pages por sector/función
 *(origen: rama `feature/landing-pages-sector`, 2026-07-16)*
 
-- [ ] Fusionar la rama `feature/landing-pages-sector` a `main` (PR abierto:
-      revisar preview de Vercel antes de aprobar).
+- [x] Fusionar la rama `feature/landing-pages-sector` a `main` (PR #2,
+      2026-07-16).
 - [ ] Agregar una sección de "casos de uso por sector" en el home que
       enlace visualmente a estas landing pages (`/clinica-estetica`,
       `/agente-de-voz`), no solo el link discreto del footer.
